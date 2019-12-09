@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Flask, request, redirect, url_for, send_from_directory, flash
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
@@ -10,6 +10,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = 'secret_key'
 
 def allowed_file(filename):
     return '.' in filename and \
