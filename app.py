@@ -24,7 +24,6 @@ def uploaded_file(filename):
 def upload_file():
 
     if request.method == 'POST':
-
         if 'file' not in request.files:
             flash('Not an image')
             return redirect(request.url)
@@ -46,6 +45,7 @@ def upload_file():
             f.write(str(time_id)+ " " +filename + '\n')
             f.close()
             os.system('python3 face.py ' + filepath)
+            
         return redirect(url_for('uploaded_file', filename='out'+filename))
 
     return '''
