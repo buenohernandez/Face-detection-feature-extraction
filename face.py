@@ -7,14 +7,11 @@ import sys
 from model import predict
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-
 path = os.getcwd()
 detector = MTCNN()
 
 class MTC:
-
     def extract_face(self, filepath):
-
         print(filepath)
         image = Image.open(filepath)
 
@@ -27,12 +24,9 @@ class MTC:
         data_h = 350
 
         if image.shape[0] > data_h:
-
             dt_h = image.shape[0]
             frame_bool = False
-
         else:
-
             dt_h = data_h
             frame = np.ones((data_h - image.shape[0], image.shape[1], 3)) * 255
             frame_bool = True
@@ -40,9 +34,7 @@ class MTC:
         data = np.ones((dt_h, 160 * fcs, 3)) * 255
 
         for i in list(range(fcs)):
-
             try:
-
                 x1, y1, width, height = results[i]['box']
                 x1, y1 = abs(x1), abs(y1)
                 x2, y2 = x1 + width, y1 + height
@@ -60,11 +52,9 @@ class MTC:
                 predictions = predict(face)
 
                 for j in list(range(len(predictions))):
-
                     cv2.putText(data, "{} {}".format(predictions[j][0], predictions[j][1]),((10+i*160),50+j*25), font, 0.5,(0,0,0), 1)
 
             except Exception as e:
-
                 print(e)
 
         if frame_bool:    image = np.concatenate((image, frame), 0)
@@ -74,7 +64,6 @@ class MTC:
         return output
 
 if __name__ == '__main__':
-
     mtc = MTC()
     filepath = sys.argv[1]
     image = mtc.extract_face(filepath)
