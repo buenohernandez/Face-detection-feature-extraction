@@ -11,17 +11,15 @@ path_val = os.getcwd() + "\\dataset\\"
 df=pd.read_csv("celeb.csv")
 columns= [att for att in df.columns[1:]]
 
-opt = Adam(lr = 0.0001)
 
 def load_model():
-
     json_file = open('model.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     loaded_model = model_from_json(loaded_model_json)
     loaded_model.load_weights("best_model.h5")
+    opt = Adam(lr = 0.0001)
     loaded_model.compile(loss='binary_crossentropy', optimizer=opt, metrics=['accuracy'])
-
     return loaded_model
 
 md_pred = load_model()
@@ -37,5 +35,4 @@ def predict(face):
     m_f = output[6]; del output[6]
     m_f = ('M:'+str(m_f[1]),'F:'+str(round(1-float(m_f[1]),2)))
     output.insert(0,m_f)
-
     return output
