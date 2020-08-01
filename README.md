@@ -1,4 +1,4 @@
-# Face-detection-feature-extraction-web-app
-Face detection and feature extraction web app using CelebA dataset
+# Face-detection-feature-extraction
+Face detection and feature extraction using CelebA dataset
 
-![alt text](https://github.com/buenohernandez/Face-detection-classification-web-app/blob/master/example.png)
+![alt text](https://github.com/buenohernandez/Face-detection-classification-web-app/blob/master/output/example.png)

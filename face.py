@@ -5,6 +5,8 @@ from PIL import Image
 import cv2
 import sys
 from model import predict
+import easygui
+from PIL import Image
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 path = os.getcwd()
@@ -65,7 +67,16 @@ class MTC:
 
 if __name__ == '__main__':
     mtc = MTC()
-    filepath = sys.argv[1]
-    image = mtc.extract_face(filepath)
-    filepath = filepath.replace('./uploads/', './uploads/out')
-    cv2.imwrite(filepath, image)
+    if len(sys.argv) < 2:
+        print('Choose an image file.')
+        filepath = easygui.fileopenbox()
+        image = mtc.extract_face(filepath)
+        filepath = os.path.join('./output', os.path.basename(filepath))
+        cv2.imwrite(filepath, image)
+    else:
+        filepath = sys.argv[1]
+        image = mtc.extract_face(filepath)
+        filepath = os.path.join('./output', os.path.basename(filepath))
+        cv2.imwrite(filepath, image)
+    print('Saved to {}.'.format(filepath))
+    Image.fromarray(cv2.cvtColor(image.astype('uint8'), cv2.COLOR_BGR2RGB)).show()
