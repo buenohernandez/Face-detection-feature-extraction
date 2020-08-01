@@ -11,4 +11,4 @@ $ python3 face.py (choose the image file)
 
 or 
 
-$ python3 webapp_linux_server.py (http://localhost:8080/)
+$ python3 webapp.py (http://localhost:8080/)
