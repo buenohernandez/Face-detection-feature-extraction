@@ -7,4 +7,8 @@ $ python3 face.py example.jpeg
 
 or
 
-$ python3 face.py (and choose the image file)
+$ python3 face.py (choose the image file)
+
+or 
+
+$ python3 webapp_linux_server.py (http://localhost:8080/)
