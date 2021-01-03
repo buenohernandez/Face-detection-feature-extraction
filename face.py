@@ -6,7 +6,6 @@ import cv2
 import sys
 from model import predict
 import easygui
-from PIL import Image
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 path = os.getcwd()
@@ -16,8 +15,6 @@ class MTC:
     def extract_face(self, filepath):
         print(filepath)
         image = Image.open(filepath)
-
-        if image.size[0] * image.size[1] > 1024 * 768:    image = image.resize((int(image.size[0]*0.5),int(image.size[1]*0.5)),Image.LANCZOS)
 
         image = np.asarray(image)[:,:,:3]
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -47,7 +44,7 @@ class MTC:
                 face = image[y1:y2, x1:x2]
                 face = Image.fromarray(face)
                 face = np.asarray(face.resize((128,128), Image.LANCZOS)) #OpenCV resize has a bug with big images
-                cv2.rectangle(image, (x1,y1),(x2,y2), (0,0,255), 1)
+                cv2.rectangle(image, (x1,y1),(x2,y2), (0,255,0), 1)
                 cv2.putText(image, str(i),(x1,y1), font, 0.5, (255,255,255),5)
                 cv2.putText(image, str(i),(x1,y1), font, 0.5, (0,0,0), 2)
                 cv2.putText(data, str(i),((10+i*160),25), font, 0.5, (0,0,0), 2)
